@@ -16,9 +16,16 @@ function Registro() {
         console.log(datos)
     }
 
-    useEffect(async() => {
-        const res = await axios.get('http://localhost:4000/resgistro')
-        console.log(res)
+    useEffect(() => {
+        const fn = async()=>{
+            await axios.get('http://localhost:4000/resgistro')
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
         
     },[])
     
@@ -28,7 +35,7 @@ function Registro() {
         <Fragment>
             
             <form className="row">
-                <div class="col-sm-8" ></div>
+                <div className="col-sm-8" ></div>
                 <div className="col-sm-4">
                     <h1>Registro</h1>
                     <input type="text" placeholder="usuario" className="form-control"  name="usuario" onChange={handleInputChange}></input><br/>
