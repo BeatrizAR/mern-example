@@ -1,7 +1,17 @@
-const app = require('./app')
+require('dotenv').config()
+const express =require('express')
+const cors = require('cors')
+const app = express()
 require('./database')
 
-const port= app.get('port')
+//configuraciones
+const port= process.env.PORT
+app.use(cors())
+app.use(express.json())
+
+//routes
+
+app.use('/',require('./routes/userRoute'))
 
 async function main(){
     await app.listen(port);
