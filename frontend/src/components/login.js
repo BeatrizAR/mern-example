@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import  styled from 'styled-components'
+import axios from 'axios'
 
 function Login() {
 
@@ -17,45 +18,66 @@ function Login() {
         })
     }
 
-    const enviarDatos = (event) => {
-        event.preventDefault()
+    useEffect(() => {
+        const fn = async()=>{
+            await axios.get('http://localhost:4000/login')
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            
+        }
+        
+    },[])
+
+    const onSubmit = async()=>{
+        await axios.post('http://localhost:4000/login', {
+                email: datos.email,
+                password: datos.password,
+            }).then(res =>{
+                setDatos(res.data)
+            })
+            .catch(err =>{
+                setDatos({})
+            })
     }
+
     const Wrapper = styled.section`
         padding: 4em;
         background: papayawhip;
     `;
 
-    const Button = styled.button`
+    /*const Button = styled.button`
         color: palevioletred;
         font-size: 1em;
         margin: 1em;
         padding: 0.25em 1em;
         border: 2px solid palevioletred;
         border-radius: 3px;
-        `;
+        `;*/
 
     return (
-        <Wrapper>
-            <form className="row" onSubmit={enviarDatos}>
-                <div class="col-sm-4" ></div>
+            <form className="row" onSubmit={onSubmit}>
+                <div className="col-sm-4" ></div>
                 <div className="col-sm-4">
-                            <input 
-                                type="email" 
-                                placeholder="email" 
-                                className="form-control" 
-                                onChange={handleInputChange} 
-                                name="email" /><br/>
-                            <input 
-                                type="password" 
-                                placeholder="password" 
-                                className="form-control" 
-                                onChange={handleInputChange} 
-                                name="password" /><br/><hr/>
-                            <Button type="submit" className="btn ">Enviar</Button>
-                        </div>
+                    <input 
+                        type="email" 
+                        placeholder="email" 
+                        className="form-control" 
+                        onChange={handleInputChange} 
+                        name="email" /><br/>
+                    <input 
+                        type="password" 
+                        placeholder="password" 
+                        className="form-control" 
+                        onChange={handleInputChange} 
+                        name="password" /><br/><hr/>
+                    <button type="submit" className="btn ">Login</button>
+                </div>
                 
             </form>
-        </Wrapper>
     )
 }
 

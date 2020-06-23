@@ -58,7 +58,7 @@ function Registro() {
                     <input type="password" placeholder="password" className="form-control"  name="password" onChange={handleInputChange}></input><br/>
                     <input type="password" placeholder="confirm_password" className="form-control"  name="confirm_password" onChange={handleInputChange}></input><br/>
                     <hr/>
-                    <button type="submit" className="btn btn-dark" >Enviar</button>
+                    <button type="submit" className="btn btn-dark" >Registrarse</button>
                 </div>
                 
             </form>
