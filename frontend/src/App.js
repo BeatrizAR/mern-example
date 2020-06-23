@@ -9,7 +9,7 @@ import Login from './components/login'
 function App() {
   return (
     <Router>
-      <Route exact path="/" component={Inicio} />
+      <Route exact path="/inicio" component={Inicio} />
       <Route exact path="/registro" component={Registro}/>
       <Route exact path="/login" component={Login} />
     </Router>

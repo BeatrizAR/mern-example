@@ -16,28 +16,21 @@ function Registro() {
         console.log(datos)
     }
 
-    useEffect(() => {
-        const fn = async()=>{
-            await axios.get('http://localhost:4000/resgistro')
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            
-        }
-        
-    },[])
 
-    const onSubmit = async()=>{
+    const onSubmit = async(e)=>{
+        e.preventDefault()
         await axios.post('http://localhost:4000/registro', {
                 name: datos.name,
                 email: datos.email,
                 password: datos.password,
                 confirm_password: datos.confirm_password
             }).then(res =>{
-                setDatos(res.data)
+                //setDatos(res.data)
+                if(res.status === 200){
+                    if(res.data.success){
+                        window.location.href="/login"
+                    }
+                }
             })
             .catch(err =>{
                 setDatos({})
@@ -53,10 +46,10 @@ function Registro() {
                 <div className="col-sm-8" ></div>
                 <div className="col-sm-4">
                     <h1>Registro</h1>
-                    <input type="text" placeholder="usuario" className="form-control"  name="name" onChange={handleInputChange}></input><br/>
-                    <input type="email" placeholder="email" className="form-control"  name="email" onChange={handleInputChange}></input><br/>
-                    <input type="password" placeholder="password" className="form-control"  name="password" onChange={handleInputChange}></input><br/>
-                    <input type="password" placeholder="confirm_password" className="form-control"  name="confirm_password" onChange={handleInputChange}></input><br/>
+                    <input required type="text" placeholder="usuario" className="form-control"  name="name" onChange={handleInputChange}></input><br/>
+                    <input required type="email" placeholder="email" className="form-control"  name="email" onChange={handleInputChange}></input><br/>
+                    <input required type="password" placeholder="password" className="form-control"  name="password" onChange={handleInputChange}></input><br/>
+                    <input required type="password" placeholder="confirm_password" className="form-control"  name="confirm_password" onChange={handleInputChange}></input><br/>
                     <hr/>
                     <button type="submit" className="btn btn-dark" >Registrarse</button>
                 </div>

@@ -18,26 +18,19 @@ function Login() {
         })
     }
 
-    useEffect(() => {
-        const fn = async()=>{
-            await axios.get('http://localhost:4000/login')
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            
-        }
-        
-    },[])
 
-    const onSubmit = async()=>{
+    const onSubmit = async(e)=>{
+        e.preventDefault()
         await axios.post('http://localhost:4000/login', {
                 email: datos.email,
                 password: datos.password,
             }).then(res =>{
-                setDatos(res.data)
+                if(res.status === 200){
+                    if(res.data.success){
+                        window.location.href="/inicio"
+                    }
+                }
+                // setDatos(res.data)
             })
             .catch(err =>{
                 setDatos({})
@@ -62,13 +55,16 @@ function Login() {
             <form className="row" onSubmit={onSubmit}>
                 <div className="col-sm-4" ></div>
                 <div className="col-sm-4">
+                    <h1>Iniciar sesion</h1>
                     <input 
+                        required
                         type="email" 
                         placeholder="email" 
                         className="form-control" 
                         onChange={handleInputChange} 
                         name="email" /><br/>
                     <input 
+                        required
                         type="password" 
                         placeholder="password" 
                         className="form-control" 
