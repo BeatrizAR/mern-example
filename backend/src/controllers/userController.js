@@ -8,7 +8,7 @@ userCtrl.getUser = async (req,res) => {
     const emailU = await User.findOne({email: email})
     console.log(emailU)
     if(emailU){
-        console.log("la contraseña es ", emailU.password)
+        //console.log("la contraseña es ", emailU.password)
         if(password == emailU.password){
             // res.redirect('/inicio')
             // res.send("Inicio");

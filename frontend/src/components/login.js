@@ -21,7 +21,7 @@ function Login() {
 
     const onSubmit = async(e)=>{
         e.preventDefault()
-        await axios.post('http://localhost:4000/login', {
+        await axios.post('/login', {
                 email: datos.email,
                 password: datos.password,
             }).then(res =>{
