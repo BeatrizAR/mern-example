@@ -7,7 +7,6 @@ router.route('/login')
     .post(getUser)
 
 router.route('/registro')
-    .get()
     .post(createUser)
 
 
