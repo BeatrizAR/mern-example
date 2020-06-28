@@ -56,5 +56,15 @@ userCtrl.createUser = async (req,res) => {
     }
 }
 
+userCtrl.getUserbyId = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.json(user);
+    } catch(err) {
+        console.log(err);
+        res.status(404).json({error: err});
+    }
+}
+
 
 module.exports = userCtrl
