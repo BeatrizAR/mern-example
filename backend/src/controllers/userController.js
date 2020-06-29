@@ -58,7 +58,7 @@ userCtrl.createUser = async (req,res) => {
 
 userCtrl.getUserbyId = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(req.user);
         res.json(user);
     } catch(err) {
         console.log(err);
