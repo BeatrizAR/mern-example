@@ -9,7 +9,7 @@ router.route('/login')
 router.route('/registro')
     .post(createUser)
 
-router.route('/:id')
+router.route('/inicio')
     .get(getUserbyId)
 
 

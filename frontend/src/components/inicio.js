@@ -19,6 +19,16 @@ function Inicio(props) {
 
   useEffect(() => {
 
+    const usuario = async () => {
+      await axios.get('/inicio')
+              .then(res =>{
+                console.log(res.data)
+              })
+              .catch(err =>{
+                console.err(err)
+              })
+    }
+
     socket.on('message', ({name, message}) => {
       setChat([...chat, {name,message}])
     })
